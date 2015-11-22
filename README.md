@@ -17,6 +17,7 @@ The main goal for current project is to create one R script called **run_analysi
 [Here are the raw data for the project](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
 and [A full description is available at the site where the data was obtained](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
 The raw data must be downloaded and extracted into the working directory of R. So the main directory **"UCI HAR Dataset"** must placed in the working directory after that runing "run_analysis.R" script will produce the tidy data.
+*N.B. More detiales available as comments in run_analysis.R file*
 
 CodeBook.md
 --------
@@ -29,3 +30,4 @@ R script to create the tidy data from the raw data.
 tidy_data.txt
 --------
 The output of the run_analysis.R file contain the tidy data
+
