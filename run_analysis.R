@@ -1,5 +1,10 @@
+# R script for Getting and Cleaning Data Course Project
+# convert raw data into tdiy data set
+# "UCI HAR Dataset" folder must placed in working directory
+#
 # Load required library
 library("reshape")
+
 # 1- Merges the training and the test sets to create one data set.
 # 1-a) Read train data 
 subject_train <- read.table("./UCI HAR Dataset/train/subject_train.txt")
@@ -44,7 +49,6 @@ required_column <- grepl("activity", names(combined_Data)) |
 # 2-b) Remove everty thing and keep only required column
 combined_Data <- combined_Data[ ,required_column]
 
-
 # 3- Uses descriptive activity names to name the activities in the data set
 combined_Data$activity <- factor(combined_Data$activity, labels=c("Walking","Walking Upstairs",
                             "Walking Downstairs", "Sitting", "Standing", "Laying"))
@@ -54,9 +58,14 @@ combined_Data$activity <- factor(combined_Data$activity, labels=c("Walking","Wal
                             
 # 5- From the data set in step 4, creates a second, independent tidy data set 
 #    with the average of each variable for each activity and each subject.
+# 5-a) "melt" data so that each row is a unique id-variable combination. 
 melted_data <- melt(combined_Data, id=c("subject_ID","activity"))
+
+# Then "cast" the melted data into required shape 
 tidy_data <- cast(melted_data, subject_ID+activity ~ variable, mean)
 
+# remove unneeded data to free more memory
 rm(required_column, feature_Names_List, combined_Data, melted_data)
-                            
+
+# Write the tidy data into file (tidy_data.txt)
 write.table(tidy_data, file = "tidy_data.txt", quote = FALSE, row.names = FALSE)
