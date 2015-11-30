@@ -46,7 +46,7 @@ required_column <- grepl("activity", names(combined_Data)) |
                                grepl("subject_ID", names(combined_Data)) |
                                grepl("mean\\(", names(combined_Data)) |
                                grepl("std\\(", names(combined_Data))
-# 2-b) Remove everty thing and keep only required column
+# 2-b) Remove everything and keep only required column
 combined_Data <- combined_Data[ ,required_column]
 
 # 3- Uses descriptive activity names to name the activities in the data set
